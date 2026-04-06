@@ -1,0 +1,18 @@
+package org.example.ex_1.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class WelcomeController {
+
+    @GetMapping("/")
+    public String showWelcome(Model model) {
+        model.addAttribute("staffName", "Vũ Đình Kiên");
+        model.addAttribute("department", "Phòng Kỹ thuật");
+        return "welcome";
+    }
+
+
+}
