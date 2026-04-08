@@ -2,7 +2,7 @@ package org.example.session_4.ex_4;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("orderRepositoryEx4") // Đổi tên để không trùng với các bài trước
+@Repository("orderRepositoryEx4") 
 public class OrderRepository {
 
     public String getAllOrders() {
