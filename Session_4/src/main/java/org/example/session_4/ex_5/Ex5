@@ -1,0 +1,24 @@
+1. Xử lý quả bẫy ép kiểu (Type Mismatch Trap):
+Thực tế lúc làm web, user rất hay có trò gõ linh tinh trên thanh URL
+(kiểu như đáng ra ID là số /orders/5 thì lại gõ nhầm thành /orders/abc).
+Nếu cứ để nguyên không rào lại, Spring nó sẽ ráng parse cái chữ "abc" kia sang kiểu Long,
+thế là ăn ngay con Exception MethodArgumentTypeMismatchException, app lăn đùng ra crash (trả về lỗi 400 vỡ mặt).
+
+Cách em fix ở đây là quất thêm quả Annotation @ExceptionHandler ngay trên tầng Controller để
+"đánh chặn" cái ngoại lệ này. Thay vì văng cái trang báo lỗi stack trace đỏ lòm đập vào mắt user,
+code của em sẽ tóm cái lỗi đấy và trả về một câu thông báo nhẹ nhàng: "LỖI HỆ THỐNG: ID đơn hàng truyền
+vào không hợp lệ. Vui lòng nhập số!". Làm kiểu này app vừa sống nhăn răng, không bị sập, mà trải nghiệm
+người dùng (UX) cũng mượt hơn hẳn.
+
+2. Phân tích về độ an toàn (Tính Idempotent - Lũy đẳng):
+
+Vì sao dùng route DELETE lại an toàn? Anh em học chuẩn RESTful thì đều biết phương thức DELETE nó có
+tính Idempotent (lũy đẳng). Hiểu nôm na là nếu mạng lag, user cay cú spam click nút "Hủy đơn" 3-4 lần
+liên tục thì kết quả cuối cùng vẫn chỉ có một: cái record đơn hàng đó bay màu khỏi Database. Dù gọi 1 lần
+hay 10 lần thì hệ thống vẫn thế, không sinh ra lỗi hay hỏng hóc data.
+
+Nhưng dùng route POST thì rén hơn vì dễ toang: Phương thức POST không hề có tính Idempotent. Bản chất của
+nó là sinh ra data mới. Nên nếu user dính lag và spam click nút "Lưu Đơn" 3 lần, Backend sẽ nhận được đủ 3
+cái Request độc lập và ung dung thực thi lệnh INSERT 3 nhát vào CSDL. Hậu quả là đẻ ra 3 cái đơn hàng rác
+giống y xì đúc nhau. (Để trị triệt để cái trò này lúc đi làm thực tế thì chắc phải bắt Frontend sinh thêm cái
+Idempotency Key bắn xuống để Backend check trùng, nhưng trong phạm vi bài này thì mình cứ hiểu rủi ro của nó là vậy đã).

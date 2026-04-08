@@ -1,0 +1,21 @@
+package org.example.session_4.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan("org.example.session_4") // Quét tất cả package ex_1, ex_2...
+public class WebConfig {
+
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/"); // Trỏ vào thư mục views
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+}

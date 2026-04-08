@@ -1,0 +1,7 @@
+Em lựa chọn Cách A (sử dụng @PathVariable) vì nó tuân thủ đúng chuẩn thiết kế
+RESTful API hiện đại trong việc định danh và truy xuất một tài nguyên cụ thể.
+Trong Cách A, số 5 nằm trực tiếp trên cấu trúc đường dẫn (URI Path), giúp định
+danh trực tiếp đơn hàng cần lấy và làm cho URL trở nên sạch sẽ, có ý nghĩa hơn.
+Ngược lại, Cách B (sử dụng @RequestParam) đặt tham số ở phần chuỗi truy vấn (Query String)
+thường chỉ được khuyến khích dùng cho các tác vụ như lọc, tìm kiếm hoặc phân trang. Do đó,
+với yêu cầu lấy chi tiết một đơn hàng duy nhất, Cách A là giải pháp thiết kế chuyên nghiệp và phù hợp nhất.
