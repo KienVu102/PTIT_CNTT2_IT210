@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller("legacyControllerBai2") // Đổi tên Bean thành Bai2
-@RequestMapping("/ex2")             // Đổi tiền tố thành /ex2
+@Controller("legacyControllerBai2") 
+@RequestMapping("/ex2")             
 public class LegacyController {
 
     private final OrderService orderService;
