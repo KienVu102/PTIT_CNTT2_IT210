@@ -1,0 +1,42 @@
+BÁO CÁO KẾT QUẢ THỰC HIỆN DỰ ÁN
+Môn học: Lập trình hướng đối tượng với Java (Nâng cao)
+Tên dự án: StudentHub — Hệ thống Quản lý Sinh viên (Spring MVC)
+Họ và tên sinh viên: Vũ Đình Kiên
+Lớp: CNTT2
+
+I. NỘI DUNG ĐÃ THỰC HIỆN
+Thực hành xây dựng ứng dụng web quản lý và báo cáo kết quả học tập, tập trung vào việc điều hướng và xử lý dữ liệu động trên nền tảng Spring MVC:
+•	Kiến trúc Spring MVC: Triển khai cấu trúc dự án dựa trên mô hình 4 tầng (Configuration, Controller, Service, Repository) để quản lý danh sách sinh viên nội bộ.
+•	Điều hướng & Truyền dữ liệu: Làm chủ kỹ thuật truyền tham số thông qua URL (Query Parameters) để thực hiện các chức năng lọc, sắp xếp và xem chi tiết.
+•	Xử lý Logic nghiệp vụ: Thực hiện tính toán các chỉ số thống kê (GPA trung bình, Thủ khoa, Tỷ lệ trạng thái) trực tiếp tại tầng Service.
+•	Hiển thị động với JSTL/EL: Sử dụng thẻ JSTL để duyệt danh sách, hiển thị dữ liệu lên View (JSP) và xử lý định dạng màu sắc dựa trên trạng thái sinh viên.
+
+II. CÔNG VIỆC ĐÃ LÀM
+•	Thiết kế cấu trúc chương trình: Tổ chức mã nguồn chuẩn xác theo 4 lớp bắt buộc: Configuration (Cấu hình Bean/View Resolver), Controller (Tiếp nhận Request), Service (Xử lý Logic), và Repository (Lưu trữ dữ liệu).
+•	Khởi tạo dữ liệu mẫu (Data Seeding): Triển khai khởi tạo danh sách List<Student> ngay trong Constructor của Repository, bao gồm thông tin thực tế của các thành viên trong nhóm để phục vụ đối chiếu.
+•	Triển khai Chức năng Xem & Sắp xếp (UC-01): * Xây dựng bảng hiển thị đầy đủ thông tin: Mã SV, Họ tên, Khoa, GPA, Trạng thái.
+o	Xử lý logic sắp xếp linh hoạt qua URL: /students?sortBy=name (A-Z) và /students?sortBy=gpa (Cao xuống thấp).
+•	Triển khai Chức năng Tìm kiếm & Lọc (UC-03): Viết logic lọc sinh viên theo tên hoặc theo khoa trực tiếp từ thanh địa chỉ, hiển thị thông báo số lượng kết quả tìm thấy.
+•	Trang Chi tiết (UC-02): Xây dựng trang hiển thị toàn bộ thuộc tính của một sinh viên dựa trên tham số id và tích hợp nút quay lại danh sách.
+•	Trang Báo cáo Tổng quan (UC-04): Thiết kế Dashboard tổng hợp các chỉ số: Tổng số sinh viên, GPA trung bình toàn nhóm và vinh danh "Thủ khoa" có GPA cao nhất.
+
+III. KẾT QUẢ ĐẠT ĐƯỢC
+•	Hoàn thành hệ thống hiển thị: Ứng dụng vận hành ổn định trên Apache Tomcat 10.x, thay thế hiệu quả cho việc quản lý bằng file Excel rời rạc.
+•	Giao diện trực quan: Hiển thị trạng thái sinh viên bằng màu sắc phân biệt (Xanh cho Đang học, Cam cho Bảo lưu, Xanh dương cho Tốt nghiệp) giúp dễ dàng theo dõi.
+•	Xử lý dữ liệu chính xác: Các chỉ số thống kê tại Dashboard phản ánh đúng dữ liệu thực tế từ tầng Repository.
+•	Thành thạo công nghệ: Nắm vững cách cấu hình Spring MVC thuần (không dùng Spring Boot) và sử dụng JSTL/EL để tương tác với dữ liệu từ Controller.
+
+IV. KHÓ KHĂN VÀ VẤN ĐỀ GẶP PHẢI
+•	Khó khăn: Việc điều hướng giữa các trang và giữ nguyên các tham số lọc/sắp xếp trên URL khi chuyển đổi qua lại giữa danh sách và chi tiết.
+•	Lỗi gặp phải: Lỗi 404 khi cấu hình sai DispatcherServlet hoặc không nhận diện được các file JSP trong thư mục WEB-INF.
+•	Cách khắc phục: Kiểm tra kỹ tệp cấu hình Java/XML, đảm bảo ViewResolver trỏ đúng đường dẫn và các thẻ <c:url> trong JSTL được sử dụng để tạo link tuyệt đối.
+
+V. KINH NGHIỆM RÚT RA
+•	Tổ chức mã nguồn: Việc tách biệt rõ ràng giữa Service và Repository giúp logic xử lý (như tìm Thủ khoa) không bị lẫn lộn với logic truy xuất dữ liệu.
+•	Truyền dữ liệu qua URL: Hiểu rõ cách thức hoạt động của Query Parameters giúp tạo ra các ứng dụng web có khả năng tương tác cao và dễ dàng bookmark.
+•	Ưu điểm của JSTL: Nhận thấy việc sử dụng thẻ JSTL giúp code JSP sạch sẽ hơn, tránh việc nhúng code Java (Scriptlet) trực tiếp vào giao diện.
+
+VI. KẾT LUẬN
+•	Tự đánh giá: Hoàn thành 100% các yêu cầu từ việc hiển thị danh sách, lọc/sắp xếp sinh viên đến xây dựng trang báo cáo thống kê chuyên nghiệp.
+•	Ý nghĩa: Dự án là bước đệm quan trọng để làm quen với hệ sinh thái Spring, giúp hình thành tư duy phân tầng trong phát triển ứng dụng web Java thực tế.
+
