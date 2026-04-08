@@ -3,7 +3,7 @@ package org.example.session_4.ex_4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("orderServiceEx4") // Đổi tên để không trùng với các bài trước
+@Service("orderServiceEx4") 
 public class OrderService {
 
     private final OrderRepository orderRepository;
