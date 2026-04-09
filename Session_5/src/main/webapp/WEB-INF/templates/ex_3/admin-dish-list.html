@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản Lý Thực Đơn</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        .error-message { background-color: #ffdddd; color: red; padding: 10px; border: 1px solid red; margin-bottom: 20px; text-align: center; font-weight: bold;}
+        .btn-edit { text-decoration: none; background-color: #007bff; color: white; padding: 5px 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">QUẢN LÝ THỰC ĐƠN (BÀI 3)</h2>
+
+<div th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên món ăn</th>
+        <th>Giá (VNĐ)</th>
+        <th>Thao tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.id}">1</td>
+        <td th:text="${dish.name}">Tên món</td>
+        <td th:text="${#numbers.formatDecimal(dish.price, 0, 'COMMA', 0, 'POINT')}">100,000</td>
+        <td>
+            <a th:href="@{|/bai3/edit/${dish.id}|}" class="btn-edit">Chỉnh sửa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+[Client (Trình duyệt)]
+       │
+       │ 1. Gửi HTTP GET request tới URL: /bai2/dishes
+       ▼
+[DishController (Controller)]
+       │
+       │ 2. Gọi Service để lấy dữ liệu
+       ▼
+[DishService (Service)] ── 3. Trả về List<Dish> (Gồm các món ăn có sẵn và hết hàng) ──┐
+       │                                                                              │
+       │ 4. Controller nhận List<Dish> và nạp vào Model (model.addAttribute) <────────┘
+       ▼
+[ViewResolver (Thymeleaf Engine)]
+       │
+       │ 5. Phân giải tên view "ex_2/dish-list"
+       │ 6. Kết hợp HTML template + Data từ Model (Dùng th:each, th:if)
+       ▼
+[HTML Rendered Output] ── 7. Trả về giao diện bảng danh sách món ăn cho Client ──> [Client]

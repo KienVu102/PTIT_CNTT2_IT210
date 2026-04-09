@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Nhà Hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        .header { background-color: #ff6600; color: white; padding: 20px; text-align: center; }
+        .footer { background-color: #333; color: white; text-align: center; padding: 15px; margin-top: auto; }
+        .main-content { padding: 40px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>NHÀ HÀNG KIÊN CHỔI - ĐẲNG CẤP HOÀNG GIA</h1>
+    <p>Thực đơn đa dạng - Phục vụ tận tâm</p>
+</div>
+
+<div class="main-content" layout:fragment="content">
+    <p>Nội dung đang được cập nhật...</p>
+</div>
+
+<div class="footer">
+    <p>© 2026 Bản quyền thuộc về Nhà hàng Kiên chổi. Liên hệ: 1900-8386</p>
+</div>
+
+</body>
+</html>

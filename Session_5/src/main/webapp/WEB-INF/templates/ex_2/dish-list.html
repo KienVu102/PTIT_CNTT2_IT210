@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thực Đơn Nhà Hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        .out-of-stock { color: red; font-weight: bold; }
+        .in-stock { color: green; font-weight: bold; }
+        .empty-message { text-align: center; font-size: 18px; color: #888; font-style: italic; margin-top: 50px; border: 1px dashed #ccc; padding: 30px; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">🍽️ DANH SÁCH THỰC ĐƠN NHÀ HÀNG</h2>
+
+<div th:if="${#lists.isEmpty(dishes)}" class="empty-message">
+    Hiện tại nhà hàng đang cập nhật thực đơn, vui lòng quay lại sau.
+</div>
+
+<table th:unless="${#lists.isEmpty(dishes)}">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên món ăn</th>
+        <th>Giá (VNĐ)</th>
+        <th>Trạng thái</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.id}">1</td>
+        <td th:text="${dish.name}">Tên món</td>
+        <td th:text="${#numbers.formatDecimal(dish.price, 0, 'COMMA', 0, 'POINT')}">100,000</td>
+
+        <td>
+            <span th:if="${dish.available}" class="in-stock">Còn hàng</span>
+            <span th:unless="${dish.available}" class="out-of-stock">Hết hàng</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+Sai định dạng tệp tin (Suffix): resolver.setSuffix(".jsp");
+
+Giải thích: Thymeleaf là một template engine được thiết kế để xử lý và hiển thị
+các file HTML (hoặc XML), không phải file JSP. Việc để đuôi .jsp cho Thymeleaf resolver
+là hoàn toàn sai công nghệ. Cần phải đổi thành .html.
+
+Sai đường dẫn thư mục và thiếu dấu gạch chéo (Prefix): resolver.setPrefix("/WEB-INF/views");
+
+Giải thích thứ nhất: Đề bài yêu cầu hệ thống phải nhận diện file trong thư mục /WEB-INF/templates/,
+nhưng code cũ lại trỏ vào thư mục views (thường dành cho JSP).
+
+Giải thích thứ hai: Thiếu dấu gạch chéo / ở cuối chuỗi. Khi Controller trả về tên view (ví dụ: "home"),
+Spring sẽ nối chuỗi Prefix + ViewName + Suffix. Nếu không có / ở cuối, nó sẽ nối thành /WEB-INF/viewshome.html
+thay vì /WEB-INF/views/home.html, dẫn đến lỗi 500 (Template might not exist or might not be accessible).

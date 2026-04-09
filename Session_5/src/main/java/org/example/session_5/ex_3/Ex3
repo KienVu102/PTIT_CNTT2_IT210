@@ -1,0 +1,26 @@
+View A (Trang danh sách): Người dùng click vào nút "Chỉnh sửa" của một món ăn cụ thể.
+Nút này chứa một đường dẫn động có gắn ID món ăn (VD: /bai3/edit/1).
+
+Controller (Nhận Request): Hàm xử lý trong AdminDishController sử dụng @PathVariable để "bắt" lấy số ID 1 từ URL.
+
+Service (Xử lý Logic): Controller gọi AdminDishService.findById(1) để tìm đối tượng Dish mang ID
+số 1 trong database (hoặc List giả lập).
+
+Bẫy dữ liệu (Validation): * Nếu Dish == null (Người dùng gõ bậy ID trên URL): Gắn câu thông báo lỗi
+vào RedirectAttributes và ném trả về View A.
+
+Nếu Dish != null: Controller đóng gói đối tượng Dish này vào Model và gọi View B.
+
+View B (Trang Edit): Nhận đối tượng Dish từ Model, dùng các thẻ của Thymeleaf để tự động điền thông
+tin cũ vào các ô <input> tương ứng.
+
+Các biểu thức Thymeleaf liên kết dữ liệu (Data Binding):
+
+th:href="@{|/bai3/edit/${dish.id}|}": Tạo URL động chứa ID bằng tính năng Literal Substitution (Nội suy chuỗi)
+thay vì phải cộng chuỗi rườm rà.
+
+th:object="${dish}": Khai báo trên thẻ <form>, báo cho Thymeleaf biết toàn bộ form này sẽ thao tác với
+đối tượng dish được truyền từ Model.
+
+th:field="*{name}": Khai báo trên thẻ <input>, tự động ánh xạ với thuộc tính name của đối tượng dish.
+Nó có tác dụng 2 chiều: vừa tự động điền giá trị cũ (value), vừa tự sinh ra thuộc tính id và name cho thẻ HTML.
